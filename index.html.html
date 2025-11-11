@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steve & Lina Wedding</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    /* desplazamiento suave a anclas */
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-image: url("img/Background.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* HEADER */
+    header  {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;  
+      text-align: center;
+      padding: 6rem 2rem 4rem; /* margen extra arriba para que no tape la nav */
+      background: linear-gradient(150deg, rgba(251,202,198,0.1), rgba(255,230,240,0.1));
+      position: relative;
+      overflow: hidden;
+      transition: background 1s ease;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle, rgba(255, 182, 193, 0.3), transparent);
+      z-index: 0;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      font-family: 'Georgia', serif;
+      position: relative;
+      z-index: 1;
+      color: #bd6f8a;
+      transition: color 0.5s ease;
+    }
+    header p {
+      font-size: 1.3rem;
+      position: relative;
+      z-index: 1;
+      color: #880e4f;
+    }
+
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem;
+      background-image:url("img/hojas.jpg");
+      background-size: cover;
+      position: sticky; 
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.7);
+      color: #7c3f58;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+    }
+    nav a:hover {
+      background: rgba(251, 202, 198, 0.9);
+      color: #880e4f;
+      transform: scale(1.05);
+    }
+    nav button {
+      margin-left: 0.25rem;
+      background-color: #f8c8dc;
+      border: none;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+    }
+    nav button:hover {
+      background-color: #e7b0cc;
+      transform: scale(1.05);
+    }
+
+    /* SECCIONES */
+    section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      background: #fff8f9;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      margin-top: 5rem; /* espacio por la navbar fija */
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+      /* para que al hacer click en el anchor no quede tapado por la navbar */
+      scroll-margin-top: 100px;
+    }
+    section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+    section h2 {
+      text-align: center;
+      color: #bd6f8a;
+      font-family: 'Georgia', serif;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+  
+
+    /* RSVP */
+    #rsvp-form {
+  text-align: left;
+  margin: 0;
+  max-width: 600px;
+}
+
+/* Placeholders gris */
+input::placeholder,
+textarea::placeholder {
+  color: #9aa0a6;
+  opacity: 1;
+}
+
+/* Texto normal dentro del textarea */
+textarea {
+  color: #333;
+}
+
+/* Estilo del link "(ver ejemplo)" */
+.hint {
+  color: #9aa0a6;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+    /* Soporte spans bilingües */
+    [data-lang="en"] { display: inline; }
+    [data-lang="es"] { display: none; }
+    .lang-es [data-lang="en"] { display: none; }
+    .lang-es [data-lang="es"] { display: inline; }
+
+    /* ==== GIFT REGISTRY GRID ==== */
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 520px) {
+      .gift-grid { grid-template-columns: 1fr; }
+    }
+    .gift-card {
+      background: rgba(255,255,255,0.75);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .gift-card h3 { margin: 0 0 .75rem 0; font-size: 1.05rem; color: #7c3f58; }
+    .gift-list { list-style: none; margin: 0; padding: 0; }
+    .gift-list li {
+      display: grid;
+      grid-template-columns: 6.5rem minmax(120px, 1fr);
+      align-items: start;
+      gap: .5rem;
+      padding: .25rem 0;
+    }
+    @media (max-width: 900px) { .gift-list li { grid-template-columns: 1fr; } }
+    .gift-label { color: #7a6b71; }
+    .gift-value { color: #4a2e39; font-weight: 600; word-break: normal; overflow-wrap: anywhere; }
+
+    /* MAP placeholder */
+    #hotels-map {
+      width: 100%;
+      height: 320px;
+      background: #fff;
+      border: 2px dashed #f7b8ce;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #7c3f58;
+      margin: 1rem 0 0.5rem;
+    }
+    .map-embed {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  margin-top: 1rem;
+}
+.map-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1.1rem;
+  color: #7c3f58;
+}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1 id="title">Steve & Lina's Wedding</h1>
+    <p id="subtitle">April 26, 2026 • Cholula, Puebla, Mexico</p>
+  </header>
+  
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#our-story" id="nav-story">Our Story</a>
+    <a href="#event-details" id="nav-details">Event Details</a>
+    <a href="#travel-info" id="nav-travel">Travel Info</a>
+    <a href="#hotels" id="nav-hotels">Hotels</a>
+    <a href="#gift-registry" id="nav-gifts">Gifts</a>
+    <a href="#rsvp" id="nav-rsvp">RSVP</a>
+    <button onclick="setLanguage('en')" aria-label="Switch to English">🇬🇧 EN</button>
+    <button onclick="setLanguage('es')" aria-label="Cambiar a español">🇪🇸 ES</button>
+  </nav>
+
+  <!-- OUR STORY -->
+  <section id="our-story" style="display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 280px;">
+      <h2 id="story-title">Our Story</h2>
+<p id="story-text"></p>
+      </p>
+    </div>
+    <div style="flex: 1; min-width: 280px; display: flex; justify-content: center;">
+      <img src="img/loslindos.jpg" alt="Our Story" style="max-width: 100%; border-radius: 12px;">
+    </div>
+  </section>
+
+  <!-- EVENT DETAILS -->
+  <section id="event-details">
+    <h2 id="details-title">Event Details</h2>
+    <p id="details-text">
+      🎩 Dress Code: Formal Attire
+    </p>
+
+    <table style="width:100%; border-collapse: collapse; margin-top:1rem; background:#fffafc; border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+      <thead style="background:#f8c8dc; color:#880e4f;">
+        <tr>
+          <th style="padding:1rem; text-align:left;">
+            <span data-lang="en">Date</span><span data-lang="es">Fecha</span>
+          </th>
+          <th style="padding:1rem; text-align:left;">
+            <span data-lang="en">Event</span><span data-lang="es">Evento</span>
+          </th>
+          <th style="padding:1rem; text-align:left;">
+            <span data-lang="en">Location</span><span data-lang="es">Lugar</span>
+          </th>
+          <th style="padding:1rem; text-align:left;">
+            <span data-lang="en">Time</span><span data-lang="es">Hora</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #eee;">
+          <td style="padding:1rem;">
+            <span data-lang="en">April 24, 2026</span>
+            <span data-lang="es">24 de Abril, 2026</span>
+          </td>
+          <td style="padding:1rem;">
+            <span data-lang="en">Welcome Lunch</span>
+            <span data-lang="es">Almuerzo de bienvenida</span>
+          </td>
+          <td style="padding:1rem;">
+            <span data-lang="en">TBD</span>
+            <span data-lang="es">A confirmar</span>
+          </td>
+          <td style="padding:1rem;">
+            <span data-lang="en">TBD</span>
+            <span data-lang="es">A confirmar</span>
+          </td>
+        </tr>
+
+        <tr style="border-bottom:1px solid #eee; background:#fff0f5;">
+          <td style="padding:1rem;">
+            <span data-lang="en">April 26, 2026</span>
+            <span data-lang="es">26 de Abril, 2026</span>
+          </td>
+          <td style="padding:1rem;">
+            <span data-lang="en">Catholic Ceremony</span>
+            <span data-lang="es">Ceremonia católica</span>
+          </td>
+          <td style="padding:1rem;">
+            <a href="https://share.google/h8vWteA0HiKmN9FkF" target="_blank" rel="noopener">
+              <span data-lang="en">Cholula Parish of Saint Andrew</span>
+              <span data-lang="es">Parroquia de San Andrés Apóstol, Cholula</span>
+            </a>
+          </td>
+          <td style="padding:1rem;">
+            <span data-lang="en">4:00 PM</span>
+            <span data-lang="es">4:00 PM</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:1rem;">
+            <span data-lang="en">April 26, 2026</span>
+            <span data-lang="es">26 de Abril, 2026</span>
+          </td>
+          <td style="padding:1rem;">
+            <span data-lang="en">Shuttle to Reception Venue 🚌</span>
+            <span data-lang="es">Transporte a la fiesta 🚌</span>
+          </td>
+          <td style="padding:1rem;">
+            <a href="https://maps.app.goo.gl/zpULqdURSuH1PoJ99" target="_blank" rel="noopener">
+              <span data-lang="en">Transport pick-up point (Plaza in front of the Church)</span>
+              <span data-lang="es">Plaza frente a la iglesia</span>
+            </a>
+          </td>
+          <td style="padding:1rem;">
+            <span data-lang="en">5:00 PM</span>
+            <span data-lang="es">5:00 PM</span>
+          </td>
+        </tr>
+
+        <tr style="border-bottom:1px solid #eee;">
+          <td style="padding:1rem;">
+            <span data-lang="en">April 26, 2026</span>
+            <span data-lang="es">26 de Abril, 2026</span>
+          </td>
+          <td style="padding:1rem;">
+            <span data-lang="en">Reception & Party 🎉</span>
+            <span data-lang="es">Recepción y fiesta 🎉</span>
+          </td>
+          <td style="padding:1rem;">
+            <a href="https://share.google/taIo8mOQqIBvmCW28" target="_blank" rel="noopener">
+              <span data-lang="en">Hacienda San José Actipan</span>
+              <span data-lang="es">Hacienda San José Actipan</span>
+            </a>
+          </td>
+          <td style="padding:1rem;">
+            <span data-lang="en">5:30 PM</span>
+            <span data-lang="es">5:30 PM</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- TRAVEL INFO -->
+  <section id="travel-info">
+    <h2 id="travel-title">Travel Information</h2>
+    <p id="travel-text"></p>
+  </section>
+
+  <!-- HOTELS -->
+  <section id="hotels">
+  <h2 id="hotels-title">Accomodations</h2>
+  <p id="hotels-text"></p>
+
+  <!-- MAPA DE GOOGLE MY MAPS -->
+  <div style="margin-top: 20px; text-align:center;">
+    <iframe 
+      src="https://www.google.com/maps/d/embed?mid=10KlvJhmaP7iIHIM7oKphpmhlb3vme0w&ehbc=2E312F"
+      width="100%" 
+      height="480" 
+      style="border:0; border-radius:12px;"
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+
+  <!-- GIFT REGISTRY -->
+  <section id="gift-registry">
+    <h2 id="gifts-title">Gifts</h2>
+    <p id="gifts-text">
+      💖 Your presence is the greatest gift we could ask for. We know many of you will be traveling far to celebrate with us.
+      If you really feel that you would like to contribute, your generosity can help us create unforgettable memories on our honeymoon. 
+      Here are our bank details — or you can bring your envelope to the reception.
+    </p>
+
+    <div class="gift-grid">
+      <!-- ARS -->
+      <div class="gift-card">
+        <h3>🇦🇷 <span data-lang="en">Pesos (ARS)</span><span data-lang="es">Pesos (ARS)</span></h3>
+        <ul class="gift-list">
+          <li><span class="gift-label"><span data-lang="en">Bank</span><span data-lang="es">Banco</span></span><span class="gift-value">Galicia</span></li>
+          <li><span class="gift-label"><span data-lang="en">Account holder</span><span data-lang="es">Titular</span></span><span class="gift-value">Lina de la Rosa</span></li>
+          <li><span class="gift-label"><span data-lang="en">Account CBU</span><span data-lang="es">CBU</span></span><span class="gift-value">0070680930004040747197</span></li>
+          <li><span class="gift-label"><span data-lang="en">Alias</span><span data-lang="es">Alias</span></span><span class="gift-value">Linadelarosa</span></li>
+          <li><span class="gift-label"><span data-lang="en">Account Number</span><span data-lang="es">Número de cuenta</span></span><span class="gift-value">4040747-1 680-9</span></li>
+        </ul>
+      </div>
+
+      <!-- USD -->
+      <div class="gift-card">
+        <h3>🇺🇸 <span data-lang="en">US Dollars (USD)</span><span data-lang="es">Dólares (USD)</span></h3>
+        <ul class="gift-list">
+          <li><span class="gift-label"><span data-lang="en">Bank</span><span data-lang="es">Banco</span></span><span class="gift-value">Lead Bank</span></li>
+          <li><span class="gift-label"><span data-lang="en">Account holder</span><span data-lang="es">Titular</span></span><span class="gift-value">Lina de la Rosa</span></li>
+          <li><span class="gift-label"><span data-lang="en">Routing (ABA)</span><span data-lang="es">Routing (ABA)</span></span><span class="gift-value">101019644</span></li>
+          <li><span class="gift-label"><span data-lang="en">Account #</span><span data-lang="es"># de cuenta</span></span><span class="gift-value">218154289817</span></li>
+          <li><span class="gift-label"><span data-lang="en">Account Type</span><span data-lang="es">Tipo de cuenta</span></span><span class="gift-value">Checking</span></li>
+        </ul>
+      </div>
+
+      <!-- COP -->
+      <div class="gift-card">
+        <h3>🇨🇴 <span data-lang="en">Colombian Pesos (COP)</span><span data-lang="es">Pesos Colombianos (COP)</span></h3>
+        <ul class="gift-list">
+          <li><span class="gift-label"><span data-lang="en">TBD</span><span data-lang="es">A confirmar</span></span><span class="gift-value">—</span></li>
+        </ul>
+      </div>
+
+      <!-- MXN -->
+      <div class="gift-card">
+        <h3>🇲🇽 <span data-lang="en">Mexican Pesos (MXN)</span><span data-lang="es">Pesos Mexicanos (MXN)</span></h3>
+        <ul class="gift-list">
+          <li><span class="gift-label"><span data-lang="en">Bank</span><span data-lang="es">Banco</span></span><span class="gift-value">Arcus</span></li>
+          <li><span class="gift-label"><span data-lang="en">Account holder</span><span data-lang="es">Titular</span></span><span class="gift-value">Lina de la Rosa</span></li>
+          <li><span class="gift-label"><span data-lang="en">CLABE</span><span data-lang="es">CLABE</span></span><span class="gift-value">706180160573218483</span></li>
+        </ul>
+      </div>
+
+      <!-- PayPal -->
+      <div class="gift-card">
+        <h3>🧾 <span data-lang="en">PayPal</span><span data-lang="es">PayPal</span></h3>
+        <ul class="gift-list">
+          <li><span class="gift-label"><span data-lang="en">Method</span><span data-lang="es">Método</span></span><span class="gift-value"><span data-lang="en">PayPal</span><span data-lang="es">PayPal / Wise / Otro</span></span></li>
+          <li><span class="gift-label"><span data-lang="en">Email</span><span data-lang="es">Email</span></span><span class="gift-value">Lina.delarosacarranza@gmail.com</span></li>
+          <li><span class="gift-label"><span data-lang="en">Note</span><span data-lang="es">Nota</span></span><span class="gift-value"><span data-lang="en">Please add your name in the reference</span><span data-lang="es">Por favor agrega tu nombre en la referencia</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp">
+  <h2 id="rsvp-title">RSVP</h2>
+
+  <form id="rsvp-form" action="https://formspree.io/f/xnnbveoq" method="POST">
+
+    <label for="name" id="label-name" style="cursor:pointer;">
+      Nombres completos de los asistentes:
+      <span id="example-toggle" style="color:#b56778; font-size:0.9rem; margin-left:8px; text-decoration:underline; cursor:pointer;">
+        (ver ejemplo)
+      </span>
+    </label>
+    <br>
+
+    <!-- CAMBIADO A TEXTAREA -->
+    <textarea id="name" name="name" rows="3">
+</textarea>
+<br><br>
+
+    <label for="email" id="label-email">Correo Electrónico de contacto:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone" id="label-phone">Teléfono de contacto:</label><br>
+    <input type="tel" id="phone" name="phone"><br><br>
+
+    <label for="allergies" id="label-allergies">Alergias alimentarias o restricciones dietéticas:</label><br>
+    <textarea id="allergies" name="allergies" rows="2"></textarea><br><br>
+
+    <label for="song" id="label-song">Petición de canción 😊 :</label><br>
+    <input type="text" id="song" name="song"><br><br>
+
+    <button type="submit" id="submit-btn">Enviar RSVP</button>
+  </form>
+
+  <p id="success-message" style="display:none; color: green;">¡Gracias por confirmar tu asistencia! / Thank you for your RSVP!</p>
+</section>
+
+
+  <script>
+    // Formspree
+    document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById('success-message').style.display = 'block';
+          this.reset();
+        } else {
+          alert('Hubo un error al enviar. Por favor, inténtalo de nuevo.');
+        }
+      }).catch(() => {
+        alert('Hubo un error al enviar. Por favor, inténtalo de nuevo.');
+      });
+    });
+
+    // Traducciones
+    const translations = {
+      en: {
+        title: "Steve & Lina's Wedding",
+        subtitle: "April 26, 2026 • Cholula, Puebla, Mexico",
+        storyTitle: "Our Story",
+        storyText: `
+<b>Mundolingo — Buenos Aires, Argentina. 2022.<br></b>
+People from across the world gather at a language exchange event, talking, learning, trading stories and laughs. In the sea of "Spanglish" that evening, there was one conversation fated to last a lifetime. 5,000 kilometers away from Barranquilla, 5,000 miles away from New Jersey — but we felt at home.<br><br>
+After that first meeting, we continued to inexplicably cross paths. The most impossible of those encounters was the day Argentina won the World Cup — with the entire city celebrating in the streets, we again stumbled upon each other. That magical moment sealed what had already begun between us.<br><br>
+As our relationship grew, we discovered our shared passion for traveling. Little by little, journeys together became part of who we are. Exploring new places and seeing the world through each other’s eyes made us fall even more in love with each other.<br><br><b>
+Parque Las Heras. 2025.<br></b>
+A sunny day in Lina's favorite park. In an unforgettable moment, those trees and winding paths became the witness of our engagement.<br><br>
+Together we live between adventures and routines: traveling the world, then returning to our beloved Buenos Aires, "La Ciudad de La Furia" that brought us together. We’ve learned that home isn’t tied to one place or city. Home is in every journey, every laugh, every promise — and most of all, in walking side by side, wherever life takes us.
+`,
+        detailsTitle: "Event Details",
+        detailsText: "🎩 Dress Code: Formal Attire",
+        travelTitle: "Travel Information",
+        travelText: `
+          <ul style="line-height:1.8; color:#444;">
+            <li>✈️ Fly into <strong>Mexico City International Airport Benito Juárez (CDMX)</strong>, which has the most international connections.</li>
+            <li>✈️ You can also fly into <strong>Puebla International Airport (PBC)</strong>; however, there will likely be a layover and fares tend to be higher.</li>
+            <li>🚌 From the airport, you can take a direct bus to Puebla or Cholula. Reliable options include:
+              <ul>
+                <li><a href="https://www.estrellaroja.com.mx/" target="_blank" rel="noopener">Estrella Roja</a> (direct service from the airport).</li>
+                <li><a href="https://www.ado.com.mx/" target="_blank" rel="noopener">ADO</a> (frequent departures to Puebla).</li>
+                <li>You can also request an Uber — fares from Mexico City to Puebla are typically around 1,000 MXN (~50 USD).</li>
+              </ul>
+            </li>
+            <li>🚗 If you prefer, you can also <a href="https://www.hertzmexico.com/" target="_blank" rel="noopener">rent a car</a> or arrange private transportation for more flexibility.</li>
+          </ul>
+        `,
+        hotelsTitle: "Accomodations",
+        hotelsText: `
+  <ul style="line-height:1.8; color:#444;">
+    <li>🏨 We recommend booking accommodations in <strong>Cholula</strong>. The highlighted area in the map below is close to both the church and the reception venue, and has many boutique hotels and AIRBNBs.</li>
+
+    <li>⭐ Some Hotel Recommendations:
+      <ul>
+        <li><a href="https://maps.app.goo.gl/xxEiwxe2Sosyx9VK8" target="_blank">Hotel La Quinta Luna</a></li>
+        <li><a href="https://maps.app.goo.gl/9LSG8Rut94ybugm37" target="_blank">Mansión Azul</a></li>
+        <li><a href="https://maps.app.goo.gl/X2P1jJFWziWS4dZv7" target="_blank">Estrella de Belem</a></li>
+        <li><a href="https://maps.app.goo.gl/7xkjB9J4SBFEQ1TQ9" target="_blank">Hotel Real de Naturales</a></li>
+      </ul>
+    </li>
+
+    <li>🏢 If you prefer a brand-name hotel, the <strong><a href="https://maps.app.goo.gl/eRoxiwov1YRamA239" target="_blank">Holiday Inn Puebla</a></strong> is a 20 minutes drive from the church.</li>
+
+  </ul>
+`,
+
+        giftsTitle: "Gifts",
+        giftsText: `
+        💖 Your presence is the greatest gift we could ask for. We know many of you will be traveling far to celebrate with us. <br><br>
+      If you really feel that you would like to contribute, your generosity can help us create unforgettable memories on our honeymoon.<br><br>
+      Here are our bank details — or you can bring your envelope to the reception.<br><br>
+        `,
+        rsvpTitle: "RSVP",
+        labelName: 'Full Names of people attending',
+        labelEmail: "Contact Email:",
+        labelPhone: "Contact Phone Number:",
+        labelAllergies: "Food allergies/dietary restrictions:",
+        labelSong: "Song Request 😊:",
+        submitBtn: "Send RSVP",
+        footerText: "With love, Steve & Lina 💕",
+        nav: ["Our Story", "Event Details", "Travel Info", "Accomodations", "Gifts", "RSVP"]
+      },
+      es: {
+        title: "Boda de Steve y Lina",
+        subtitle: "26 de abril, 2026 • Cholula, Puebla, México",
+        storyTitle: "Nuestra Historia",
+        storyText: `
+<b>Mundolingo — Buenos Aires, Argentina. 2022.<br></b>
+
+Personas de todo el mundo se reúnen en un evento de intercambio de idiomas, donde conversan, aprenden y comparten historias y risas. En aquel mar de “Espanglish”, surgió una conversación destinada a durar toda la vida. A pesar de estar a 5.000 kilómetros de Barranquilla y 5.000 millas de Nueva Jersey, nos sentimos como en casa.<br><br>
+
+Después de ese primer encuentro, nos seguimos cruzando de manera inexplicable. El día en que el destino nos hizo ver esto fue cuando Argentina ganó la Copa del Mundo: con toda la ciudad celebrando en las calles, ¿qué chances había de encontrarnos? Ese momento mágico selló lo que ya había comenzado.<br><br>
+
+A medida que nuestra relación avanzaba, descubrimos la pasión que compartimos por viajar. Poco a poco, esos viajes se convirtieron en parte de quienes somos. Explorar nuevos lugares y ver el mundo a través de los ojos del otro nos hizo enamorarnos aún más.<br><br>
+
+<b>Parque Las Heras. 2025.<br></b>
+Un día soleado en el parque favorito de Lina, en un instante inolvidable, esos árboles y senderos se convirtieron en testigos de nuestro compromiso.<br><br>
+
+Hoy vivimos entre aventuras y rutinas: viajamos por el mundo y luego regresamos a nuestra querida Buenos Aires, “La Ciudad de la Furia”, la ciudad que nos unió. Aprendimos que el hogar no está ligado a un solo lugar o ciudad. El hogar está en cada viaje, en cada risa, en cada promesa y, sobre todo, en caminar lado a lado, adondequiera que la vida nos lleve.
+`,
+        detailsText: "🎩 Código de vestimenta: Formal",
+        travelTitle: "Información de Viaje",
+        travelText: `
+          <ul style="line-height:1.8; color:#444;">
+            <li>✈️ Vuela al <strong>Aeropuerto Internacional de la Ciudad de México Benito Juárez (CDMX)</strong>, que cuenta con la mayor cantidad de conexiones internacionales.</li>
+            <li>✈️ También puedes volar al <strong>Aeropuerto Internacional de Puebla (PBC)</strong>; sin embargo, probablemente haya una escala y las tarifas suelen ser más altas.</li>
+            <li>🚌 Desde el aeropuerto puedes tomar un autobús directo a Puebla o Cholula. Opciones confiables incluyen:
+              <ul>
+                <li><a href="https://www.estrellaroja.com.mx/" target="_blank" rel="noopener">Estrella Roja</a> (servicio directo desde el aeropuerto).</li>
+                <li><a href="https://www.ado.com.mx/" target="_blank" rel="noopener">ADO</a> (salidas frecuentes a Puebla).</li>
+                <li>También puedes pedir un Uber — los precios desde CDMX a Puebla suelen rondar los 1.000 MXN (~50 USD).</li>
+              </ul>
+            </li>
+            <li>🚗 Si lo prefieres, también puedes <a href="https://www.hertzmexico.com/" target="_blank" rel="noopener">alquilar un auto</a> o contratar transporte privado para mayor flexibilidad.</li>
+          </ul>
+        `,
+        hotelsTitle: "Estadía",
+       hotelsText: `
+  <ul style="line-height:1.8; color:#444;">
+    <li>🏨 Recomendamos reservar alojamiento en <strong>Cholula</strong>. La zona que muestra el mapa de abajo está cerca de la iglesia y la recepción; cuenta con varios hoteles boutique y AIRNBs.</li>
+
+    <li>⭐ Hoteles recomendados:
+      <ul>
+        <li><a href="https://maps.app.goo.gl/xxEiwxe2Sosyx9VK8" target="_blank">Hotel La Quinta Luna</a></li>
+        <li><a href="https://maps.app.goo.gl/9LSG8Rut94ybugm37" target="_blank">Mansión Azul</a></li>
+        <li><a href="https://maps.app.goo.gl/X2P1jJFWziWS4dZv7" target="_blank">Estrella de Belem</a></li>
+        <li><a href="https://maps.app.goo.gl/7xkjB9J4SBFEQ1TQ9" target="_blank">Hotel Real de Naturales</a></li>
+      </ul>
+    </li>
+
+    <li>🏢 Si prefieres una cadena internacional, el <strong><a href="https://maps.app.goo.gl/eRoxiwov1YRamA239" target="_blank">Holiday Inn Puebla</a></strong> está a 20 minutos en auto de la iglesia.</li>
+
+  </ul>
+`,
+
+        giftsTitle: "Regalos",
+        giftsText: `
+     💖 Tu presencia es el mejor regalo que podemos recibir. Sabemos que muchos viajarán desde lejos para acompañarnos.<br><br>
+Si aun así desean hacernos un obsequio, su generosidad nos ayudará a crear recuerdos inolvidables en nuestra luna de miel.<br><br>
+Aquí están nuestras cuentas bancarios — o pueden traer su sobre a la fiesta<br><br>
+        `,
+        rsvpTitle: "Confirmar Asistencia",
+        labelName: 'Nombres completos quienes asistirán',
+        labelEmail: "Correo electrónico de contacto:",
+        labelPhone: "Teléfono de contacto:",
+        labelAllergies: "Alergias alimentarias o restricciones:",
+        labelSong: "Petición de canción 😊:",
+        submitBtn: "Enviar RSVP",
+        footerText: "Con amor, Steve & Lina 💕",
+        nav: ["Nuestra Historia", "Detalles del Evento", "Información de Viaje", "Estadía", "Regalos", "RSVP"]
+      }
+    };
+
+    function setLanguage(lang) { 
+      // toggle clase para mostrar spans data-lang
+      document.body.classList.toggle('lang-es', lang === 'es');
+
+      const t = translations[lang];
+      // Títulos y secciones
+      document.getElementById('title').innerHTML = t.title;
+      document.getElementById('subtitle').innerHTML = t.subtitle;
+      document.getElementById('story-title').innerHTML = t.storyTitle;
+      document.getElementById('story-text').innerHTML = t.storyText;
+      document.getElementById('details-title').innerHTML = t.detailsTitle;
+      document.getElementById('details-text').innerHTML = t.detailsText;
+      document.getElementById('gifts-title').innerHTML = t.giftsTitle;
+      document.getElementById('gifts-text').innerHTML = t.giftsText;
+      document.getElementById('travel-title').innerHTML = t.travelTitle;
+      document.getElementById('travel-text').innerHTML = t.travelText;
+      document.getElementById('hotels-title').innerHTML = t.hotelsTitle;
+      document.getElementById('hotels-text').innerHTML = t.hotelsText;
+      document.getElementById('rsvp-title').innerHTML = t.rsvpTitle;
+      document.getElementById('label-name').innerHTML = t.labelName;
+      document.getElementById('label-email').innerHTML = t.labelEmail;
+      document.getElementById('label-phone').innerHTML = t.labelPhone;
+      document.getElementById('label-allergies').innerHTML = t.labelAllergies;
+      document.getElementById('label-song').innerHTML = t.labelSong;
+      document.getElementById('submit-btn').innerHTML = t.submitBtn;
+      document.getElementById('footer-text').innerHTML = t.footerText;
+      
+
+      // Navbar
+      const navIds = ['nav-story', 'nav-details', 'nav-travel', 'nav-hotels', 'nav-gifts','nav-rsvp'];
+      navIds.forEach((id, idx) => {
+        document.getElementById(id).innerHTML = t.nav[idx];
+      });
+    }
+
+    // Mostrar inglés por defecto al cargar la página
+    document.addEventListener("DOMContentLoaded", () => {
+      setLanguage('en');
+    });
+    // Mostrar ejemplo al hacer clic
+document.getElementById("example-toggle").addEventListener("click", () => {
+  const textarea = document.getElementById("name");
+  textarea.placeholder = "John Smith / Juana Lacubana";
+  textarea.focus();
+});
+
+  </script>
+
+  <!-- FOOTER -->
+  <footer>
+    <p id="footer-text">With love, Steve & Lina 💕</p>
+  </footer>
+</body>
+</html>
