@@ -132,35 +132,33 @@
       position: relative;
     }
 
-  
-
     /* RSVP */
     #rsvp-form {
-  text-align: left;
-  margin: 0;
-  max-width: 600px;
-}
+      text-align: left;
+      margin: 0;
+      max-width: 600px;
+    }
 
-/* Placeholders gris */
-input::placeholder,
-textarea::placeholder {
-  color: #9aa0a6;
-  opacity: 1;
-}
+    /* Placeholders gris */
+    input::placeholder,
+    textarea::placeholder {
+      color: #9aa0a6;
+      opacity: 1;
+    }
 
-/* Texto normal dentro del textarea */
-textarea {
-  color: #333;
-}
+    /* Texto normal dentro del textarea */
+    textarea {
+      color: #333;
+    }
 
-/* Estilo del link "(ver ejemplo)" */
-.hint {
-  color: #9aa0a6;
-  font-size: 0.9rem;
-  text-decoration: underline;
-  cursor: pointer;
-  margin-left: 8px;
-}
+    /* Estilo del link "(ver ejemplo)" */
+    .hint {
+      color: #9aa0a6;
+      font-size: 0.9rem;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 8px;
+    }
 
     /* Soporte spans bilingües */
     [data-lang="en"] { display: inline; }
@@ -212,28 +210,29 @@ textarea {
       margin: 1rem 0 0.5rem;
     }
     .map-embed {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 */
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  margin-top: 1rem;
-}
-.map-embed iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-footer {
-  text-align: center;
-  padding: 2rem 0;
-  font-size: 1.1rem;
-  color: #7c3f58;
-}
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      margin-top: 1rem;
+    }
+    .map-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 1.1rem;
+      color: #7c3f58;
+    }
   </style>
 </head>
 <body>
@@ -260,8 +259,7 @@ footer {
   <section id="our-story" style="display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap;">
     <div style="flex: 1; min-width: 280px;">
       <h2 id="story-title">Our Story</h2>
-<p id="story-text"></p>
-      </p>
+      <p id="story-text"></p>
     </div>
     <div style="flex: 1; min-width: 280px; display: flex; justify-content: center;">
       <img src="img/loslindos.jpg" alt="Our Story" style="max-width: 100%; border-radius: 12px;">
@@ -386,33 +384,31 @@ footer {
 
   <!-- HOTELS -->
   <section id="hotels">
-  <h2 id="hotels-title">Accomodations</h2>
-  <p id="hotels-text"></p>
+    <h2 id="hotels-title">Accommodations</h2>
+    <p id="hotels-text"></p>
 
-  <!-- MAPA DE GOOGLE MY MAPS -->
-  <div style="margin-top: 20px; text-align:center;">
-    <iframe 
-      src="https://www.google.com/maps/d/embed?mid=10KlvJhmaP7iIHIM7oKphpmhlb3vme0w&ehbc=2E312F"
-      width="100%" 
-      height="480" 
-      style="border:0; border-radius:12px;"
-      loading="lazy">
-    </iframe>
-  </div>
-</section>
-
+    <!-- MAPA DE GOOGLE MY MAPS -->
+    <div style="margin-top: 20px; text-align:center;">
+      <iframe 
+        src="https://www.google.com/maps/d/embed?mid=10KlvJhmaP7iIHIM7oKphpmhlb3vme0w&ehbc=2E312F"
+        width="100%" 
+        height="480" 
+        style="border:0; border-radius:12px;"
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
 
   <!-- GIFT REGISTRY -->
   <section id="gift-registry">
     <h2 id="gifts-title">Gifts</h2>
-   <p id="gifts-text">
-  Your presence is truly the greatest gift. We know that traveling to celebrate with us already takes time, effort, and expense, and we appreciate it more than we can say.
-  <br><br>
-  If you would still like to give a gift, we kindly ask that you avoid physical items as we won’t be able to transport them home easily. Instead, we’ve included options for sending a contribution online, or you’re welcome to bring a card or envelope to the reception.
-  <br><br>
-  Thank you for making the trip — it means the world to us!
-</p>
-
+    <p id="gifts-text">
+      Your presence is truly the greatest gift. We know that traveling to celebrate with us already takes time, effort, and expense, and we appreciate it more than we can say.
+      <br><br>
+      If you would still like to give a gift, we kindly ask that you avoid physical items as we won’t be able to transport them home easily. Instead, we’ve included options for sending a contribution online, or you’re welcome to bring a card or envelope to the reception.
+      <br><br>
+      Thank you for making the trip — it means the world to us!
+    </p>
 
     <div class="gift-grid">
       <!-- ARS -->
@@ -471,41 +467,39 @@ footer {
 
   <!-- RSVP -->
   <section id="rsvp">
-  <h2 id="rsvp-title">RSVP</h2>
+    <h2 id="rsvp-title">RSVP</h2>
 
-  <form id="rsvp-form" action="https://formspree.io/f/xnnbveoq" method="POST">
+    <form id="rsvp-form" action="https://formspree.io/f/xnnbveoq" method="POST">
 
-    <label for="name" id="label-name" style="cursor:pointer;">
-      Nombres completos de los asistentes:
-      <span id="example-toggle" style="color:#b56778; font-size:0.9rem; margin-left:8px; text-decoration:underline; cursor:pointer;">
-        (ver ejemplo)
-      </span>
-    </label>
-    <br>
+      <label for="name" id="label-name" style="cursor:pointer;">
+        Nombres completos de los asistentes:
+        <span id="example-toggle" style="color:#b56778; font-size:0.9rem; margin-left:8px; text-decoration:underline; cursor:pointer;">
+          (ver ejemplo)
+        </span>
+      </label>
+      <br>
 
-    <!-- CAMBIADO A TEXTAREA -->
-    <textarea id="name" name="name" rows="3">
-</textarea>
-<br><br>
+      <!-- CAMBIADO A TEXTAREA -->
+      <textarea id="name" name="name" rows="3"></textarea>
+      <br><br>
 
-    <label for="email" id="label-email">Correo Electrónico de contacto:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
+      <label for="email" id="label-email">Correo Electrónico de contacto:</label><br>
+      <input type="email" id="email" name="email" required><br><br>
 
-    <label for="phone" id="label-phone">Teléfono de contacto:</label><br>
-    <input type="tel" id="phone" name="phone"><br><br>
+      <label for="phone" id="label-phone">Teléfono de contacto:</label><br>
+      <input type="tel" id="phone" name="phone"><br><br>
 
-    <label for="allergies" id="label-allergies">Alergias alimentarias o restricciones dietéticas:</label><br>
-    <textarea id="allergies" name="allergies" rows="2"></textarea><br><br>
+      <label for="allergies" id="label-allergies">Alergias alimentarias o restricciones dietéticas:</label><br>
+      <textarea id="allergies" name="allergies" rows="2"></textarea><br><br>
 
-    <label for="song" id="label-song">Petición de canción 😊 :</label><br>
-    <input type="text" id="song" name="song"><br><br>
+      <label for="song" id="label-song">Petición de canción 😊 :</label><br>
+      <input type="text" id="song" name="song"><br><br>
 
-    <button type="submit" id="submit-btn">Enviar RSVP</button>
-  </form>
+      <button type="submit" id="submit-btn">Enviar RSVP</button>
+    </form>
 
-  <p id="success-message" style="display:none; color: green;">¡Gracias por confirmar tu asistencia! / Thank you for your RSVP!</p>
-</section>
-
+    <p id="success-message" style="display:none; color: green;">¡Gracias por confirmar tu asistencia! / Thank you for your RSVP!</p>
+  </section>
 
   <script>
     // Formspree
@@ -533,12 +527,12 @@ footer {
         title: "Steve & Lina's Wedding",
         subtitle: "April 26, 2026 • Cholula, Puebla, Mexico",
         storyTitle: "Our Story",
-        storyText: "Detalles del Evento"
+        storyText: `
 <b>Mundolingo — Buenos Aires, Argentina. 2022.<br></b>
 People from across the world gather at a language exchange event, talking, learning, trading stories and laughs. In the sea of "Spanglish" that evening, there was one conversation fated to last a lifetime. 5,000 kilometers away from Barranquilla, 5,000 miles away from New Jersey — but we felt at home.<br><br>
 After that first meeting, we continued to inexplicably cross paths. The most impossible of those encounters was the day Argentina won the World Cup — with the entire city celebrating in the streets, we again stumbled upon each other. That magical moment sealed what had already begun between us.<br><br>
-As our relationship grew, we discovered our shared passion for traveling. Little by little, journeys together became part of who we are. Exploring new places and seeing the world through each other’s eyes made us fall even more in love with each other.<br><br><b>
-Parque Las Heras. 2025.<br></b>
+As our relationship grew, we discovered our shared passion for traveling. Little by little, journeys together became part of who we are. Exploring new places and seeing the world through each other’s eyes made us fall even more in love with each other.<br><br>
+<b>Parque Las Heras. 2025.<br></b>
 A sunny day in Lina's favorite park. In an unforgettable moment, those trees and winding paths became the witness of our engagement.<br><br>
 Together we live between adventures and routines: traveling the world, then returning to our beloved Buenos Aires, "La Ciudad de La Furia" that brought us together. We’ve learned that home isn’t tied to one place or city. Home is in every journey, every laugh, every promise — and most of all, in walking side by side, wherever life takes us.
 `,
@@ -559,10 +553,10 @@ Together we live between adventures and routines: traveling the world, then retu
             <li>🚗 If you prefer, you can also <a href="https://www.hertzmexico.com/" target="_blank" rel="noopener">rent a car</a> or arrange private transportation for more flexibility.</li>
           </ul>
         `,
-        hotelsTitle: "Accomodations",
+        hotelsTitle: "Accommodations",
         hotelsText: `
   <ul style="line-height:1.8; color:#444;">
-    <li>🏨 We recommend booking accommodations in <strong>Cholula</strong>. The highlighted area in the map below is close to both the church and the reception venue, and has many boutique hotels and AIRBNBs.</li>
+    <li>🏨 We recommend booking accommodations in <strong>Cholula</strong>. The highlighted area in the map below is close to both the church and the reception venue, and has many boutique hotels and Airbnbs.</li>
 
     <li>⭐ Some Hotel Recommendations:
       <ul>
@@ -577,9 +571,8 @@ Together we live between adventures and routines: traveling the world, then retu
 
   </ul>
 `,
-
         giftsTitle: "Gifts",
-       giftsText: `
+        giftsText: `
   Your presence is truly the greatest gift. We know that traveling to celebrate with us already takes time, effort, and expense, and we appreciate it more than we can say.<br><br>
   If you would still like to give a gift, we kindly ask that you avoid physical items as we won’t be able to transport them home easily. Instead, we’ve included options for sending a contribution online, or you’re welcome to bring a card or envelope to the reception.<br><br>
   Thank you for making the trip — it means the world to us!
@@ -592,7 +585,7 @@ Together we live between adventures and routines: traveling the world, then retu
         labelSong: "Song Request 😊:",
         submitBtn: "Send RSVP",
         footerText: "With love, Steve & Lina 💕",
-        nav: ["Our Story", "Event Details", "Travel Info", "Accomodations", "Gifts", "RSVP"]
+        nav: ["Our Story", "Event Details", "Travel Info", "Accommodations", "Gifts", "RSVP"]
       },
       es: {
         title: "Boda de Steve y Lina",
@@ -612,6 +605,7 @@ Un día soleado en el parque favorito de Lina, en un instante inolvidable, esos 
 
 Hoy vivimos entre aventuras y rutinas: viajamos por el mundo y luego regresamos a nuestra querida Buenos Aires, “La Ciudad de la Furia”, la ciudad que nos unió. Aprendimos que el hogar no está ligado a un solo lugar o ciudad. El hogar está en cada viaje, en cada risa, en cada promesa y, sobre todo, en caminar lado a lado, adondequiera que la vida nos lleve.
 `,
+        detailsTitle: "Detalles del Evento",
         detailsText: "🎩 Código de vestimenta: Formal",
         travelTitle: "Información de Viaje",
         travelText: `
@@ -629,7 +623,7 @@ Hoy vivimos entre aventuras y rutinas: viajamos por el mundo y luego regresamos 
           </ul>
         `,
         hotelsTitle: "Alojamiento",
-       hotelsText: `
+        hotelsText: `
   <ul style="line-height:1.8; color:#444;">
     <li>🏨 Recomendamos reservar alojamiento en <strong>Cholula</strong>. La zona que muestra el mapa de abajo está cerca de la iglesia y la recepción y cuenta con varios hoteles boutique y Airbnbs.</li>
 
@@ -646,14 +640,12 @@ Hoy vivimos entre aventuras y rutinas: viajamos por el mundo y luego regresamos 
 
   </ul>
 `,
-
         giftsTitle: "Regalos",
-       giftsText: `
+        giftsText: `
   Tu presencia es el mejor regalo. Sabemos que viajar para celebrar con nosotros implica tiempo, esfuerzo y gastos, y lo apreciamos más de lo que podemos expresar.<br><br>
   Si aun así deseas hacernos un obsequio, te pedimos que evites regalos físicos, ya que no podremos transportarlos fácilmente de regreso a casa. En su lugar, hemos incluido opciones para enviar una contribución en línea, o si prefieres, puedes llevar un sobre a la recepción.<br><br>
   ¡Gracias por hacer el viaje — significa el mundo para nosotros!
 `,
-
         rsvpTitle: "Confirmar Asistencia",
         labelName: 'Nombres completos de quienes asistirán',
         labelEmail: "Correo electrónico de contacto:",
@@ -693,7 +685,6 @@ Hoy vivimos entre aventuras y rutinas: viajamos por el mundo y luego regresamos 
       document.getElementById('submit-btn').innerHTML = t.submitBtn;
       document.getElementById('footer-text').innerHTML = t.footerText;
       
-
       // Navbar
       const navIds = ['nav-story', 'nav-details', 'nav-travel', 'nav-hotels', 'nav-gifts','nav-rsvp'];
       navIds.forEach((id, idx) => {
@@ -705,13 +696,13 @@ Hoy vivimos entre aventuras y rutinas: viajamos por el mundo y luego regresamos 
     document.addEventListener("DOMContentLoaded", () => {
       setLanguage('en');
     });
-    // Mostrar ejemplo al hacer clic
-document.getElementById("example-toggle").addEventListener("click", () => {
-  const textarea = document.getElementById("name");
-  textarea.placeholder = "John Smith / Juana Lacubana";
-  textarea.focus();
-});
 
+    // Mostrar ejemplo al hacer clic
+    document.getElementById("example-toggle").addEventListener("click", () => {
+      const textarea = document.getElementById("name");
+      textarea.placeholder = "John Smith / Juana Lacubana";
+      textarea.focus();
+    });
   </script>
 
   <!-- FOOTER -->
@@ -720,5 +711,3 @@ document.getElementById("example-toggle").addEventListener("click", () => {
   </footer>
 </body>
 </html>
-
-
