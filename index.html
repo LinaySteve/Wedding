@@ -690,6 +690,9 @@ Hoy vivimos entre aventuras y rutinas: viajamos por el mundo y luego regresamos 
       navIds.forEach((id, idx) => {
         document.getElementById(id).innerHTML = t.nav[idx];
       });
+        // 👇 fuerza el texto del último ítem por si algo falla con el array
+  document.getElementById('nav-rsvp').textContent =
+    lang === 'es' ? 'Confirmar Asistencia' : 'RSVP';
     }
 
     // Mostrar inglés por defecto al cargar la página
@@ -711,4 +714,5 @@ Hoy vivimos entre aventuras y rutinas: viajamos por el mundo y luego regresamos 
   </footer>
 </body>
 </html>
+
 
